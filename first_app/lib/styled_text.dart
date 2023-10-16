@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-var title = 'Hello World -- !!!';
-
 class StyledText extends StatelessWidget {
-  const StyledText({super.key});
-
+  const StyledText(this.title, {super.key});
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Text(
