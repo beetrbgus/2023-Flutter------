@@ -1,4 +1,3 @@
-import 'package:first_app/styled_text.dart';
 import 'package:flutter/material.dart';
 
 const Alignment topLeft = Alignment.topLeft;
@@ -10,6 +9,9 @@ class GradientContainer extends StatelessWidget {
     this.color2, {
     super.key,
   });
+  const GradientContainer.orange({super.key})
+      : color1 = const Color.fromRGBO(255, 171, 64, 1),
+        color2 = const Color.fromARGB(255, 235, 227, 217);
   final Color color1;
   final Color color2;
   @override
@@ -22,8 +24,11 @@ class GradientContainer extends StatelessWidget {
           end: bottomRight,
         ),
       ),
-      child: const Center(
-        child: StyledText("Hello World--!!"),
+      child: Center(
+        child: Image.asset(
+          'assets/images/dice-2.png',
+          width: 200,
+        ),
       ),
     );
   }
