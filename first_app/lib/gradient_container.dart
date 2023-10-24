@@ -14,6 +14,12 @@ class GradientContainer extends StatelessWidget {
         color2 = const Color.fromARGB(255, 235, 227, 217);
   final Color color1;
   final Color color2;
+
+  // 주사위 굴리면 나오는 행동을 정의
+  void rollDice() {
+    print("눌림!");
+  }
+
   @override
   Widget build(context) {
     return Container(
@@ -25,9 +31,14 @@ class GradientContainer extends StatelessWidget {
         ),
       ),
       child: Center(
-        child: Image.asset(
-          'assets/images/dice-2.png',
-          width: 200,
+        child: Column(
+          children: [
+            Image.asset(
+              'assets/images/dice-2.png',
+              width: 200,
+            ),
+            TextButton(onPressed: rollDice, child: const Text('주사위 굴리기'))
+          ],
         ),
       ),
     );
