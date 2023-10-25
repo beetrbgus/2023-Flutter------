@@ -2,6 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+// 이전 버전에서처럼 Random()을 누를 때마다 setState 안에서 생성하면 메모리 성능에 좋지 않음
+final randomizer = Random();
+
 // stateful 위젯은 두개의 클래스로 구성
 class DiceRoller extends StatefulWidget {
   // stateful 위젯은 내부적으로 변화할 수 있지만 해당 클래스는 변화하지 않음.
@@ -22,7 +25,7 @@ class _DiceRollerState extends State<DiceRoller> {
   void rollDice() {
     // stateful 위젯에서 build를 다시 실행하라고 명령함.
     setState(() {
-      currentDiceRoll = (Random().nextInt(6) + 1);
+      currentDiceRoll = (randomizer.nextInt(6) + 1);
     });
   }
 
