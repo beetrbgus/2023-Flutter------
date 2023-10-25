@@ -4,19 +4,21 @@ const Alignment topLeft = Alignment.topLeft;
 const Alignment bottomRight = Alignment.bottomRight;
 
 class GradientContainer extends StatelessWidget {
-  const GradientContainer(
+  GradientContainer(
     this.color1,
     this.color2, {
     super.key,
   });
-  const GradientContainer.orange({super.key})
+  GradientContainer.orange({super.key})
       : color1 = const Color.fromRGBO(255, 171, 64, 1),
         color2 = const Color.fromARGB(255, 235, 227, 217);
   final Color color1;
   final Color color2;
 
+  var activeDiceImage = 'assets/images/dice-1.png';
   // 주사위 굴리면 나오는 행동을 정의
   void rollDice() {
+    activeDiceImage = 'assets/images/dice-4.png';
     print("눌림!");
   }
 
@@ -35,7 +37,7 @@ class GradientContainer extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
-              'assets/images/dice-2.png',
+              activeDiceImage,
               width: 200,
             ),
             const SizedBox(
