@@ -13,6 +13,13 @@ class StartScreen extends StatelessWidget {
             'assets/images/spring.png',
             width: 300,
           ),
+          // Opacity(
+          //   opacity: 0.8,
+          //   child: Image.asset(
+          //     'assets/images/spring.png',
+          //     width: 300,
+          //   ),
+          // ),
           const SizedBox(
             height: 30,
           ),
@@ -23,10 +30,13 @@ class StartScreen extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          OutlinedButton(
+          OutlinedButton.icon(
             onPressed: () {},
+            label: const Text("Start Quiz"),
             style: OutlinedButton.styleFrom(foregroundColor: Colors.white),
-            child: const Text("Start Quiz"),
+            icon: const Icon(
+              Icons.quiz_outlined,
+            ),
           ),
         ],
       ),
