@@ -1,4 +1,3 @@
-import 'package:adv_basic/gradient_container.dart';
 import 'package:adv_basic/quiz.dart';
 import 'package:flutter/material.dart';
 
