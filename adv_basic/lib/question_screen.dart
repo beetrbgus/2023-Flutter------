@@ -20,6 +20,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
           const Text(
             "The question...",
             style: TextStyle(
+              color: Colors.white12,
               fontSize: 30,
             ),
           ),
@@ -28,18 +29,30 @@ class _QuestionScreenState extends State<QuestionScreen> {
           ),
           ElevatedButton(
             onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white12,
+            ),
             child: const Text('Answer 1'),
           ),
           ElevatedButton(
             onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white12,
+            ),
             child: const Text('Answer 1'),
           ),
           ElevatedButton(
             onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white12,
+            ),
             child: const Text('Answer 1'),
           ),
           ElevatedButton(
             onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white12,
+            ),
             child: const Text('Answer 1'),
           ),
         ],
