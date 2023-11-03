@@ -1,3 +1,4 @@
+import 'package:adv_basic/answer_button.dart';
 import 'package:flutter/material.dart';
 
 class QuestionScreen extends StatefulWidget {
@@ -20,40 +21,37 @@ class _QuestionScreenState extends State<QuestionScreen> {
           const Text(
             "The question...",
             style: TextStyle(
-              color: Colors.white12,
+              color: Color.fromARGB(235, 255, 254, 254),
               fontSize: 30,
             ),
           ),
           const SizedBox(
             height: 30,
           ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white12,
-            ),
-            child: const Text('Answer 1'),
+          AnswerButton(
+            answerText: 'Answer 1...',
+            onTap: () {},
           ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white12,
-            ),
-            child: const Text('Answer 1'),
+          const SizedBox(
+            height: 10,
           ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white12,
-            ),
-            child: const Text('Answer 1'),
+          AnswerButton(
+            answerText: 'Answer 2...',
+            onTap: () {},
           ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white12,
-            ),
-            child: const Text('Answer 1'),
+          const SizedBox(
+            height: 10,
+          ),
+          AnswerButton(
+            answerText: 'Answer 3...',
+            onTap: () {},
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          AnswerButton(
+            answerText: 'Answer 4...',
+            onTap: () {},
           ),
         ],
       ),
