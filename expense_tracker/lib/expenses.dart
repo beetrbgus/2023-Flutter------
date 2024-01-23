@@ -40,6 +40,15 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Flutter 비용 추적기!"),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+          ),
+        ], // 앱바에 있는 버튼
+      ),
       body: Column(
         children: [
           const Text('차트'),
