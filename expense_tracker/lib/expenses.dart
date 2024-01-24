@@ -1,5 +1,6 @@
 import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
 import 'package:expense_tracker/widgets/expense.dart';
+import 'package:expense_tracker/widgets/modal_expense_add.dart';
 import 'package:flutter/material.dart';
 
 class Expenses extends StatefulWidget {
@@ -40,7 +41,7 @@ class _ExpensesState extends State<Expenses> {
     // 동적으로 새로운 UI 요소를 아래에서 출력
     showModalBottomSheet(
       context: context,
-      builder: ((context) => const Text('Modal Bottom Sheet')),
+      builder: ((context) => const ModalExpenseAdd()),
     );
   }
 
