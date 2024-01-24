@@ -36,6 +36,13 @@ class _ExpensesState extends State<Expenses> {
       category: Category.work,
     ),
   ];
+  void _openAddExpenseOverlay() {
+    // 동적으로 새로운 UI 요소를 아래에서 출력
+    showModalBottomSheet(
+      context: context,
+      builder: ((context) => const Text('Modal Bottom Sheet')),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +51,7 @@ class _ExpensesState extends State<Expenses> {
         title: const Text("Flutter 비용 추적기!"),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: _openAddExpenseOverlay,
             icon: const Icon(Icons.add),
           ),
         ], // 앱바에 있는 버튼
