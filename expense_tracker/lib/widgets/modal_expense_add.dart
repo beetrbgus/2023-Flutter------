@@ -12,12 +12,13 @@ class ModalExpenseAdd extends StatefulWidget {
 class _ModalExpenseAdd extends State<ModalExpenseAdd> {
   // 텍스트 필드에 값으로 전달되는 값을 저장하는 것을 알아서 해 줌.
   final _titleController = TextEditingController();
-
+  final _amountController = TextEditingController();
   //initState와 build와 비슷하다. StatefulWidget의 생명주기의 일부분이다.
   // Widget 과 state가 destroy 되면 자동으로 플러터에 의해 호출된다.
   @override
   void dispose() {
     _titleController.dispose();
+    _amountController.dispose();
     super.dispose();
   }
   // 제목이 입력될 때마다 실행 됨. String input값은 onChanged에서 제공. 이 방법대신 Controller를 사용
@@ -39,8 +40,23 @@ class _ModalExpenseAdd extends State<ModalExpenseAdd> {
               label: Text("제목"),
             ),
           ),
+          TextField(
+            controller: _amountController,
+            maxLength: 50,
+            keyboardType: TextInputType.number,
+            decoration: const InputDecoration(
+              prefixText: '￦',
+              label: Text("비용"),
+            ),
+          ),
           Row(
             children: [
+              TextButton(
+                onPressed: () {},
+                child: const Icon(
+                  Icons.cancel_presentation_outlined,
+                ),
+              ),
               ElevatedButton(
                 onPressed: () {
                   print(_titleController.text);
