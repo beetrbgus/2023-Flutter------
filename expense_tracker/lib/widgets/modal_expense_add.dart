@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -17,6 +16,7 @@ class _ModalExpenseAdd extends State<ModalExpenseAdd> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedDate;
+  Category? _selectedCategory;
   void _presentDatePicker() async {
     final now = DateTime.now();
     final firstDate = DateTime(now.year - 1, now.month, now.day);
@@ -95,8 +95,32 @@ class _ModalExpenseAdd extends State<ModalExpenseAdd> {
               ),
             ],
           ),
+          const SizedBox(
+            height: 16,
+          ),
           Row(
             children: [
+              DropdownButton(
+                value: _selectedCategory, // 선택된 값이 보여짐. items 안에서 선택하는 것
+                items: Category.values
+                    .map(
+                      (category) => DropdownMenuItem(
+                        value: category,
+                        child: Row(
+                          children: [
+                            Icon(categoryIconse[category]),
+                            Text(category.name),
+                          ],
+                        ),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedCategory = value;
+                  });
+                },
+              ),
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
