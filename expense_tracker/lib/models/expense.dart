@@ -8,7 +8,16 @@ import 'package:uuid/uuid.dart';
  */
 const uuId = Uuid();
 final dateformatter = DateFormat("yyyy-MM-dd");
+
 // 강의에서 나온 enum을 Icon으로 처리한 것
+enum Category {
+  food,
+  travel,
+  leisure,
+  work,
+  ;
+}
+
 const categoryIconse = {
   Category.food: Icons.lunch_dining,
   Category.travel: Icons.flight_takeoff_rounded,
@@ -33,15 +42,4 @@ class Expense {
   String get formmattedCreatedAt {
     return dateformatter.format(createdAt);
   }
-}
-
-enum Category {
-  food(Icons.lunch_dining),
-  travel(Icons.flight_takeoff_rounded),
-  leisure(Icons.sports_football_outlined),
-  work(Icons.card_travel),
-  ;
-
-  const Category(this.icon);
-  final IconData icon;
 }
