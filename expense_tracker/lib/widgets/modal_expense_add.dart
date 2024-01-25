@@ -1,6 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+final dateformatter = DateFormat("yyyy-MM-dd");
 
 class ModalExpenseAdd extends StatefulWidget {
   const ModalExpenseAdd({super.key});
@@ -13,16 +16,21 @@ class _ModalExpenseAdd extends State<ModalExpenseAdd> {
   // 텍스트 필드에 값으로 전달되는 값을 저장하는 것을 알아서 해 줌.
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
-  void _presentDatePicker() {
+  DateTime? _selectedDate;
+  void _presentDatePicker() async {
     final now = DateTime.now();
     final firstDate = DateTime(now.year - 1, now.month, now.day);
 
-    showDatePicker(
+    final pickedDate = await showDatePicker(
       context: context,
       initialDate: now,
       firstDate: firstDate,
       lastDate: now,
     );
+
+    setState(() {
+      _selectedDate = pickedDate;
+    });
   }
 
   //initState와 build와 비슷하다. StatefulWidget의 생명주기의 일부분이다.
@@ -71,7 +79,11 @@ class _ModalExpenseAdd extends State<ModalExpenseAdd> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text("사용일"),
+                    Text(
+                      _selectedDate == null
+                          ? "사용일 선택"
+                          : dateformatter.format(_selectedDate!),
+                    ),
                     IconButton(
                       onPressed: _presentDatePicker,
                       icon: const Icon(
