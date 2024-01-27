@@ -40,9 +40,18 @@ class _ExpensesState extends State<Expenses> {
   void _openAddExpenseOverlay() {
     // 동적으로 새로운 UI 요소를 아래에서 출력
     showModalBottomSheet(
+      isScrollControlled: true, // 모듈 오버레이가 사용 가능한 높이를 모두 차지
       context: context,
-      builder: ((context) => const ModalExpenseAdd()),
+      builder: ((context) => ModalExpenseAdd(onAddExpense: _addExpense)),
     );
+  }
+
+  void _addExpense(Expense expense) {
+    print("_addExpense");
+
+    setState(() {
+      _registerExpenses.add(expense);
+    });
   }
 
   @override

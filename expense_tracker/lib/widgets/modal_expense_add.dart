@@ -5,7 +5,8 @@ import 'package:intl/intl.dart';
 final dateformatter = DateFormat("yyyy-MM-dd");
 
 class ModalExpenseAdd extends StatefulWidget {
-  const ModalExpenseAdd({super.key});
+  const ModalExpenseAdd({super.key, required this.onAddExpense});
+  final void Function(Expense expense) onAddExpense;
 
   @override
   State<StatefulWidget> createState() => _ModalExpenseAdd();
@@ -56,8 +57,19 @@ class _ModalExpenseAdd extends State<ModalExpenseAdd> {
           ],
         ),
       );
+
       return;
     }
+
+    widget.onAddExpense(
+      Expense(
+        title: _titleController.text,
+        amount: inputAmount,
+        createdAt: _selectedDate!,
+        category: _selectedCategory!,
+      ),
+    );
+    Navigator.pop(context);
   }
 
   //initState와 build와 비슷하다. StatefulWidget의 생명주기의 일부분이다.
@@ -76,7 +88,7 @@ class _ModalExpenseAdd extends State<ModalExpenseAdd> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
       child: Column(
         children: [
           TextField(
