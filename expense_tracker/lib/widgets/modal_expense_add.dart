@@ -33,6 +33,33 @@ class _ModalExpenseAdd extends State<ModalExpenseAdd> {
     });
   }
 
+  void _submitExpenseData() {
+    final inputAmount = double.tryParse(_amountController.text);
+    final amountIsInvalid = inputAmount == null || inputAmount < 0;
+
+    if (_titleController.text.trim().isEmpty ||
+        amountIsInvalid ||
+        _selectedDate == null) {
+      // show error Message
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("유효하지 않은 입력값이 있습니다."),
+          content: const Text('입력값을 다시 한번 확인한 후 제출해주세요.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("확인!"),
+            )
+          ],
+        ),
+      );
+      return;
+    }
+  }
+
   //initState와 build와 비슷하다. StatefulWidget의 생명주기의 일부분이다.
   // Widget 과 state가 destroy 되면 자동으로 플러터에 의해 호출된다.
   @override
@@ -131,7 +158,7 @@ class _ModalExpenseAdd extends State<ModalExpenseAdd> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  print(_titleController.text);
+                  _submitExpenseData();
                 },
                 child: const Text('비용 저장'),
               )
