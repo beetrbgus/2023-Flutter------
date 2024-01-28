@@ -47,15 +47,45 @@ class _ExpensesState extends State<Expenses> {
   }
 
   void _addExpense(Expense expense) {
-    print("_addExpense");
-
     setState(() {
       _registerExpenses.add(expense);
     });
   }
 
+  void _removeExpense(Expense expense) {
+    final expenseIndex = _registerExpenses.indexOf(expense);
+    setState(() {
+      _registerExpenses.remove(expense);
+    });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 3),
+        content: const Text("비용 삭제됨."),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              _registerExpenses.insert(expenseIndex, expense);
+            });
+          },
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    Widget mainContent = const Center(
+      child: Text("지출 비용을 찾을 수 없습니다. 추가해보세요!"),
+    );
+
+    if (_registerExpenses.isNotEmpty) {
+      mainContent = ExpensesList(
+        expenses: _registerExpenses,
+        onRemoveExpense: (expense) => _removeExpense(expense),
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text("Flutter 비용 추적기!"),
@@ -70,9 +100,7 @@ class _ExpensesState extends State<Expenses> {
         children: [
           const Text('차트'),
           Expanded(
-            child: ExpensesList(
-              expenses: _registerExpenses,
-            ),
+            child: mainContent,
           ),
         ],
       ),
