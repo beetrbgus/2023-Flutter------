@@ -13,6 +13,11 @@ var kColorScheme = ColorScheme.fromSeed(
   onPrimaryContainer: const Color.fromARGB(255, 255, 237, 224),
 ); // k는 변수 컨벤션 같은 느낌
 
+var kDarkColorScheme = ColorScheme.fromSeed(
+  brightness: Brightness.dark,
+  seedColor: const Color.fromARGB(255, 5, 99, 125),
+);
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -29,6 +34,22 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale('ko', 'KR'),
       ],
+      darkTheme: ThemeData.dark().copyWith(
+        useMaterial3: true,
+        colorScheme: kDarkColorScheme,
+        cardTheme: const CardTheme().copyWith(
+          color: kDarkColorScheme.secondaryContainer,
+          margin: const EdgeInsets.symmetric(
+            vertical: 8,
+            horizontal: 16,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: kDarkColorScheme.primaryContainer,
+              foregroundColor: kDarkColorScheme.onPrimaryContainer),
+        ),
+      ),
       theme: ThemeData().copyWith(
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.red[100],
@@ -57,6 +78,8 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ), // 전체 스크린의 색상을 정의
+      // themeMode: ThemeMode.system, // default 설정
+      themeMode: ThemeMode.dark,
       home: const Expenses(),
     );
   }
