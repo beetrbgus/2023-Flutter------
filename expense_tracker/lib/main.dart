@@ -6,6 +6,13 @@ void main() {
   runApp(const MyApp());
 }
 
+var kColorScheme = ColorScheme.fromSeed(
+  seedColor: const Color.fromARGB(255, 250, 219, 195),
+  primary: const Color.fromARGB(255, 252, 192, 150),
+  primaryContainer: const Color.fromARGB(255, 83, 82, 82),
+  onPrimaryContainer: const Color.fromARGB(255, 255, 237, 224),
+); // k는 변수 컨벤션 같은 느낌
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -22,10 +29,34 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale('ko', 'KR'),
       ],
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      theme: ThemeData().copyWith(
         useMaterial3: true,
-      ),
+        scaffoldBackgroundColor: Colors.red[100],
+        colorScheme: kColorScheme,
+        appBarTheme: const AppBarTheme().copyWith(
+          foregroundColor: kColorScheme.primaryContainer,
+          backgroundColor: kColorScheme.onPrimaryContainer,
+        ),
+        cardTheme: const CardTheme().copyWith(
+          color: Colors.amber[100],
+          margin: const EdgeInsets.symmetric(
+            vertical: 8,
+            horizontal: 16,
+          ),
+        ), // 카드 테마
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kColorScheme.primaryContainer,
+          ),
+        ),
+        textTheme: ThemeData().textTheme.copyWith(
+              titleLarge: TextStyle(
+                fontWeight: FontWeight.normal,
+                color: kColorScheme.onSecondaryContainer,
+                fontSize: 14,
+              ),
+            ),
+      ), // 전체 스크린의 색상을 정의
       home: const Expenses(),
     );
   }
