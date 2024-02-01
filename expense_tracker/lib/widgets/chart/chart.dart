@@ -1,5 +1,6 @@
 import 'package:expense_tracker/widgets/chart/chart_bar.dart';
 import 'package:expense_tracker/models/expense.dart';
+import 'package:flutter/material.dart';
 
 class Chart extends StatelessWidget {
   const Chart({super.key, required this.expenses});
@@ -8,10 +9,10 @@ class Chart extends StatelessWidget {
 
   List<ExpenseBucket> get buckets {
     return [
-      ExpenseBucket.forCategory(expenses, Category.food),
-      ExpenseBucket.forCategory(expenses, Category.leisure),
-      ExpenseBucket.forCategory(expenses, Category.travel),
-      ExpenseBucket.forCategory(expenses, Category.work),
+      ExpenseBucket.forCategory(Category.food, expenses),
+      ExpenseBucket.forCategory(Category.leisure, expenses),
+      ExpenseBucket.forCategory(Category.travel, expenses),
+      ExpenseBucket.forCategory(Category.work, expenses),
     ];
   }
 
@@ -19,8 +20,8 @@ class Chart extends StatelessWidget {
     double maxTotalExpense = 0;
 
     for (final bucket in buckets) {
-      if (bucket.totalExpenses > maxTotalExpense) {
-        maxTotalExpense = bucket.totalExpenses;
+      if (bucket.totalExpense > maxTotalExpense) {
+        maxTotalExpense = bucket.totalExpense;
       }
     }
 
@@ -58,9 +59,9 @@ class Chart extends StatelessWidget {
               children: [
                 for (final bucket in buckets) // alternative to map()
                   ChartBar(
-                    fill: bucket.totalExpenses == 0
+                    fill: bucket.totalExpense == 0
                         ? 0
-                        : bucket.totalExpenses / maxTotalExpense,
+                        : bucket.totalExpense / maxTotalExpense,
                   )
               ],
             ),
@@ -73,7 +74,7 @@ class Chart extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4),
                       child: Icon(
-                        categoryIcons[bucket.category],
+                        categoryIconse[bucket.category],
                         color: isDarkMode
                             ? Theme.of(context).colorScheme.secondary
                             : Theme.of(context)
