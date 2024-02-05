@@ -77,6 +77,8 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     Widget mainContent = const Center(
       child: Text("지출 비용을 찾을 수 없습니다. 추가해보세요!"),
     );
@@ -97,16 +99,28 @@ class _ExpensesState extends State<Expenses> {
           ),
         ], // 앱바에 있는 버튼
       ),
-      body: Column(
-        children: [
-          Chart(
-            expenses: _registerExpenses,
-          ),
-          Expanded(
-            child: mainContent,
-          ),
-        ],
-      ),
+      body: width < 600
+          ? Column(
+              children: [
+                Chart(
+                  expenses: _registerExpenses,
+                ),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            )
+          : Row(
+              children: [
+                Expanded(
+                    child: Chart(
+                  expenses: _registerExpenses,
+                )),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            ),
     );
   }
 }

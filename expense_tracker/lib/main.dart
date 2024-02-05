@@ -4,11 +4,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/services.dart';
 
 void main() {
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]).then((fn) {
-    runApp(const MyApp());
-  });
+  // SystemChrome.setPreferredOrientations([
+  // DeviceOrientation.portraitUp,
+  // ]).then((fn) {
+  runApp(const MyApp());
+  // });
 }
 
 var kColorScheme = ColorScheme.fromSeed(
