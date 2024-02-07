@@ -88,97 +88,100 @@ class _ModalExpenseAdd extends State<ModalExpenseAdd> {
   @override
   Widget build(BuildContext context) {
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(16, 48, 16, keyboardSpace + 16),
-        child: Column(
-          children: [
-            TextField(
-              maxLength: 50,
-              controller: _titleController,
-              // onChanged: _titleController, // TextController를 사용하기 때문에 필요없어짐.
-              decoration: const InputDecoration(
-                label: Text("제목"),
+    return SizedBox(
+      height: double.infinity,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(16, 48, 16, keyboardSpace + 16),
+          child: Column(
+            children: [
+              TextField(
+                maxLength: 50,
+                controller: _titleController,
+                // onChanged: _titleController, // TextController를 사용하기 때문에 필요없어짐.
+                decoration: const InputDecoration(
+                  label: Text("제목"),
+                ),
               ),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _amountController,
-                    maxLength: 50,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      prefixText: '￦',
-                      label: Text("비용"),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _amountController,
+                      maxLength: 50,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        prefixText: '￦',
+                        label: Text("비용"),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        _selectedDate == null
-                            ? "사용일 선택"
-                            : dateformatter.format(_selectedDate!),
-                      ),
-                      IconButton(
-                        onPressed: _presentDatePicker,
-                        icon: const Icon(
-                          Icons.date_range_outlined,
+                  const SizedBox(height: 16),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          _selectedDate == null
+                              ? "사용일 선택"
+                              : dateformatter.format(_selectedDate!),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Row(
-              children: [
-                DropdownButton(
-                  value: _selectedCategory, // 선택된 값이 보여짐. items 안에서 선택하는 것
-                  items: Category.values
-                      .map(
-                        (category) => DropdownMenuItem(
-                          value: category,
-                          child: Row(
-                            children: [
-                              Icon(categoryIconse[category]),
-                              Text(category.name),
-                            ],
+                        IconButton(
+                          onPressed: _presentDatePicker,
+                          icon: const Icon(
+                            Icons.date_range_outlined,
                           ),
                         ),
-                      )
-                      .toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedCategory = value;
-                    });
-                  },
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Icon(
-                    Icons.cancel_presentation_outlined,
+                      ],
+                    ),
                   ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    _submitExpenseData();
-                  },
-                  child: const Text('비용 저장'),
-                )
-              ],
-            ),
-          ],
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  DropdownButton(
+                    value: _selectedCategory, // 선택된 값이 보여짐. items 안에서 선택하는 것
+                    items: Category.values
+                        .map(
+                          (category) => DropdownMenuItem(
+                            value: category,
+                            child: Row(
+                              children: [
+                                Icon(categoryIconse[category]),
+                                Text(category.name),
+                              ],
+                            ),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedCategory = value;
+                      });
+                    },
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Icon(
+                      Icons.cancel_presentation_outlined,
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      _submitExpenseData();
+                    },
+                    child: const Text('비용 저장'),
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
