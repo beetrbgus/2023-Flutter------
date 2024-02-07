@@ -41,6 +41,7 @@ class _ExpensesState extends State<Expenses> {
   void _openAddExpenseOverlay() {
     // 동적으로 새로운 UI 요소를 아래에서 출력
     showModalBottomSheet(
+      useSafeArea: true,
       isScrollControlled: true, // 모듈 오버레이가 사용 가능한 높이를 모두 차지
       context: context,
       builder: ((context) => ModalExpenseAdd(onAddExpense: _addExpense)),
