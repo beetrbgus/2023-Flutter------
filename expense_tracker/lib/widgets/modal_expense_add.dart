@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:expense_tracker/models/expense.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
@@ -35,14 +38,24 @@ class _ModalExpenseAdd extends State<ModalExpenseAdd> {
     });
   }
 
-  void _submitExpenseData() {
-    final inputAmount = double.tryParse(_amountController.text);
-    final amountIsInvalid = inputAmount == null || inputAmount < 0;
-
-    if (_titleController.text.trim().isEmpty ||
-        amountIsInvalid ||
-        _selectedDate == null) {
-      // show error Message
+  void _showDialog() {
+    if (Platform.isIOS) {
+      showCupertinoDialog(
+        context: context,
+        builder: (context) => CupertinoAlertDialog(
+          title: const Text("유효하지 않은 입력값이 있습니다."),
+          content: const Text('입력값을 다시 한번 확인한 후 제출해주세요.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("확인!"),
+            )
+          ],
+        ),
+      );
+    } else {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -58,6 +71,18 @@ class _ModalExpenseAdd extends State<ModalExpenseAdd> {
           ],
         ),
       );
+    }
+  }
+
+  void _submitExpenseData() {
+    final inputAmount = double.tryParse(_amountController.text);
+    final amountIsInvalid = inputAmount == null || inputAmount < 0;
+
+    if (_titleController.text.trim().isEmpty ||
+        amountIsInvalid ||
+        _selectedDate == null) {
+      // show error Message
+      _showDialog();
 
       return;
     }
