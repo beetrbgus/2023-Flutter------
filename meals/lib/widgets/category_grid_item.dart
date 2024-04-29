@@ -14,6 +14,8 @@ class CategoryGridItem extends StatelessWidget {
       onTap: () {
         print("zz");
       },
+      borderRadius: BorderRadius.circular(20),
+      splashColor: Theme.of(context).primaryColor,
       child: Container(
         padding: const EdgeInsets.all(
           16,
