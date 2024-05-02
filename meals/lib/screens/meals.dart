@@ -35,7 +35,7 @@ class MealsScreen extends StatelessWidget {
       content = ListView.builder(
           itemCount: meals.length,
           itemBuilder: (context, index) => Text(meals[index].title));
-    } else {}
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
