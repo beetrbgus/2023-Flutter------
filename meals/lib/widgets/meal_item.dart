@@ -16,6 +16,10 @@ class MealItem extends StatelessWidget {
       margin: const EdgeInsets.symmetric(
         vertical: 10,
       ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25),
+      ),
+      clipBehavior: Clip.hardEdge,
       child: InkWell(
         onTap: () {},
         // Stack은 쌓음
