@@ -15,7 +15,7 @@ class CategoriesScreen extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => MealsScreen(
-          title: 'Some title',
+          title: category.title,
           meals: filteredMeals,
         ),
       ),
