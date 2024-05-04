@@ -20,6 +20,7 @@ class MealItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(25),
       ),
       clipBehavior: Clip.hardEdge,
+      elevation: 2,
       child: InkWell(
         onTap: () {},
         // Stack은 쌓음
@@ -28,6 +29,9 @@ class MealItem extends StatelessWidget {
             FadeInImage(
               placeholder: MemoryImage(kTransparentImage),
               image: NetworkImage(meal.imageUrl),
+              fit: BoxFit.cover,
+              height: 200,
+              width: double.infinity,
             ),
             Positioned(
               bottom: 0,
