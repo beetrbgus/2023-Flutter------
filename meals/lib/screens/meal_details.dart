@@ -26,7 +26,7 @@ class MealDetailScreen extends StatelessWidget {
             height: 14,
           ),
           Text(
-            'Ingredients',
+            '내용물',
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.bold,
@@ -41,6 +41,30 @@ class MealDetailScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     color: Theme.of(context).colorScheme.onBackground,
                   ),
+            ),
+          const SizedBox(
+            height: 24,
+          ),
+          Text(
+            '순서',
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          for (final step in meal.steps)
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 4,
+              ),
+              child: Text(
+                step,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
+              ),
             ),
         ],
       ),
