@@ -21,7 +21,7 @@ class MealDetailScreen extends StatelessWidget {
               onToggleLike(meal);
             },
             icon: const Icon(Icons.favorite),
-          )
+          ),
         ],
       ),
       body: SingleChildScrollView(
