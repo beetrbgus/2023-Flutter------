@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meals/screens/category.dart';
+import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/meals.dart';
 
 class TabScreen extends StatefulWidget {
@@ -35,6 +35,7 @@ class _TabScreenState extends State<TabScreen> {
         onTap: (index) {
           _selectPage(index);
         },
+        currentIndex: _selectedPageIndex, // 하이라이트 됨
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.set_meal),
