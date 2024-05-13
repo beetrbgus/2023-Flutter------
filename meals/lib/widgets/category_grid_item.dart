@@ -14,7 +14,6 @@ class CategoryGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print("zz");
         onSelectCategory();
       },
       borderRadius: BorderRadius.circular(20),
