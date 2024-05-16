@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:meals/data/dummy_data.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/filters.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/widgets/main_drawer.dart';
+
+const kInitialFilters = {
+  Filter.glutenFree: false,
+  Filter.lactoseFree: false,
+  Filter.vegan: false,
+  Filter.vegetarian: false,
+};
 
 class TabScreen extends StatefulWidget {
   const TabScreen({super.key});
@@ -15,6 +23,8 @@ class TabScreen extends StatefulWidget {
 class _TabScreenState extends State<TabScreen> {
   int _selectedPageIndex = 0;
   final List<Meal> _likeMeal = [];
+
+  Map<Filter, bool> _selectedFilters = kInitialFilters;
 
   void _showInfoMessage(String message) {
     ScaffoldMessenger.of(context).clearSnackBars();
@@ -50,17 +60,33 @@ class _TabScreenState extends State<TabScreen> {
     if (identifier == 'filters') {
       final result = await Navigator.of(context).push<Map<Filter, bool>>(
         MaterialPageRoute(
-          builder: (context) => const FilterScreen(),
+          builder: (context) => FilterScreen(
+            currentFilters: _selectedFilters,
+          ),
         ),
       );
+      setState(() {
+        _selectedFilters = result ?? kInitialFilters;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final List<Meal> availableMeal = dummyMeals.where((meal) {
+      print(meal.title);
+      if (_selectedFilters[Filter.glutenFree]! && !meal.isGlutenFree) false;
+      if (_selectedFilters[Filter.lactoseFree]! && !meal.isLactoseFree) false;
+      if (_selectedFilters[Filter.vegetarian]! && !meal.isVegetarian) false;
+      if (_selectedFilters[Filter.vegan]! && !meal.isVegan) false;
+      return true;
+    }).toList();
+
     Widget activePage = CategoriesScreen(
       onToggleLike: _toggleMealFavoriteStatus,
+      availableMeals: availableMeal,
     );
+
     var activePageTitle = 'Categories';
     if (_selectedPageIndex == 1) {
       activePage = MealsScreen(
