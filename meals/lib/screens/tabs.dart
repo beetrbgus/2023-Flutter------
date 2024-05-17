@@ -7,6 +7,7 @@ import 'package:meals/screens/meals.dart';
 import 'package:meals/widgets/main_drawer.dart';
 import 'package:meals/providers/meals_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals/providers/likes_provider.dart';
 
 const kInitialFilters = {
   Filter.glutenFree: false,
@@ -27,29 +28,6 @@ class _TabScreenState extends ConsumerState<TabScreen> {
   final List<Meal> _likeMeal = [];
 
   Map<Filter, bool> _selectedFilters = kInitialFilters;
-
-  void _showInfoMessage(String message) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
-  }
-
-  void _toggleMealFavoriteStatus(Meal meal) {
-    if (_likeMeal.contains(meal)) {
-      setState(() {
-        _likeMeal.remove(meal);
-      });
-      _showInfoMessage("제거 되었습니다.");
-    } else {
-      setState(() {
-        _likeMeal.add(meal);
-      });
-      _showInfoMessage("추가 되었습니다.");
-    }
-  }
 
   void _selectPage(int index) {
     setState(() {
@@ -85,16 +63,15 @@ class _TabScreenState extends ConsumerState<TabScreen> {
     }).toList();
 
     Widget activePage = CategoriesScreen(
-      onToggleLike: _toggleMealFavoriteStatus,
       availableMeals: availableMeal,
     );
 
     var activePageTitle = 'Categories';
     if (_selectedPageIndex == 1) {
+      final likeMeals = ref.watch(likeMealsProvider);
       activePage = MealsScreen(
         title: 'Favorites',
-        meals: _likeMeal,
-        onToggleLike: _toggleMealFavoriteStatus,
+        meals: likeMeals,
       );
       activePageTitle = 'My Favorite';
     }
