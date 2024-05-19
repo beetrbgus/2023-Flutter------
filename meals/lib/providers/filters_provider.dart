@@ -18,7 +18,11 @@ class FilterNotifier extends StateNotifier<Map<Filter, bool>> {
           Filter.vegan: false,
         });
 
-  void setFiulter(Filter filter, bool isActive) {
+  void setFilters(Map<Filter, bool> chosenFilters) {
+    state = chosenFilters;
+  }
+
+  void setFilter(Filter filter, bool isActive) {
     // state[filter] = isActive; //허용 안됨 => state 메모리 변경 X
     state = {
       ...state,
