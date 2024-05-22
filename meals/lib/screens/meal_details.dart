@@ -13,6 +13,10 @@ class MealDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final likeMeals = ref.watch(likeMealsProvider);
+
+    final bool isLike = likeMeals.contains(meal);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
@@ -30,7 +34,12 @@ class MealDetailScreen extends ConsumerWidget {
                 ),
               );
             },
-            icon: const Icon(Icons.favorite),
+            icon: isLike
+                ? const Icon(
+                    Icons.favorite,
+                    color: Color.fromARGB(255, 235, 105, 105),
+                  )
+                : const Icon(Icons.favorite),
           ),
         ],
       ),
@@ -60,7 +69,7 @@ class MealDetailScreen extends ConsumerWidget {
               Text(
                 ingredient,
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
               ),
             const SizedBox(
@@ -83,7 +92,7 @@ class MealDetailScreen extends ConsumerWidget {
                   step,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                 ),
               ),
