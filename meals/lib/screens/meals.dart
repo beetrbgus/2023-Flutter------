@@ -31,7 +31,7 @@ class MealsScreen extends StatelessWidget {
           Text(
             "아무것도...없네요?",
             style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                  color: Theme.of(context).colorScheme.onBackground,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
           ),
           const SizedBox(
@@ -40,7 +40,7 @@ class MealsScreen extends StatelessWidget {
           Text(
             "아무것도...없네요?",
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  color: Theme.of(context).colorScheme.onBackground,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
           ),
         ],

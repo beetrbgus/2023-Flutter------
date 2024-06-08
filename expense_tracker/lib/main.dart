@@ -39,7 +39,6 @@ class MyApp extends StatelessWidget {
         Locale('ko', 'KR'),
       ],
       darkTheme: ThemeData.dark().copyWith(
-        useMaterial3: true,
         colorScheme: kDarkColorScheme,
         cardTheme: const CardTheme().copyWith(
           color: kDarkColorScheme.secondaryContainer,
@@ -55,7 +54,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       theme: ThemeData().copyWith(
-        useMaterial3: true,
         scaffoldBackgroundColor: Colors.red[100],
         colorScheme: kColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
